@@ -18,9 +18,9 @@
 - 定义使用者所要用的接口
 - 暴露一个方法给调用者来注册接口回调
 
-       public void setOnTopbarClickListener(topbarClickListener mlistener) {
+         public void setOnTopbarClickListener(topbarClickListener mlistener) {
             this.mlistener = mlistener;
-        }
+         }
 
 ###3.重写View来实现全新的控件
 - 通常重写他的onDraw(),onMeasure()方法来实现绘制逻辑,
@@ -30,3 +30,23 @@
 
 
 ##5.事件拦截机制
+  >事件传递: 父控件--->子控件--->控件
+  >事件的处理顺序: 控件--->子控件--->父控件
+
+- 主要复写 以下三个方法
+
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        return super.onInterceptTouchEvent(ev);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return super.onTouchEvent(event);
+    }
